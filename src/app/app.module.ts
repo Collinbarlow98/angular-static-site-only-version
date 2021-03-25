@@ -10,9 +10,11 @@ import { MessagesComponent } from './messages/messages.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
+import { StoreModule } from '@ngrx/store';
+import { LikeCounterComponent } from './like-counter/like-counter.component';
+import { counterReducer } from './like-counter.reducer';
 
 @NgModule({
   imports: [
@@ -20,13 +22,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
-// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-// and returns simulated server responses.
-// Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    StoreModule.forRoot({ likes: counterReducer })
   ],
   declarations: [
     AppComponent,
@@ -34,7 +30,9 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    PageNotFoundComponent,
+    LikeCounterComponent
   ],
   bootstrap: [ AppComponent ]
 })
