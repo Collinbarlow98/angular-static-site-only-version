@@ -14,10 +14,12 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './like-counter.reducer';
+import { SidekicksComponent } from './sidekicks/sidekicks.component';
+import { SidekickDetailComponent } from './sidekick-detail/sidekick-detail.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -30,7 +32,9 @@ import { counterReducer } from './like-counter.reducer';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SidekicksComponent,
+    SidekickDetailComponent
   ],
   bootstrap: [ AppComponent ]
 })

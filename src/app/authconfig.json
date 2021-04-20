@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true
+  },
+    "credentials": {
+      "clientId": "2292d64a-9a6c-4387-981f-27539433f76f",
+      "tenantId": "63e23e10-75b0-4ea4-b232-3bc27184e093"
+    },
+    "configuration": {
+      "redirectUri": "https://tohfunctionapi.developer.azure-api.net/signin-oauth/code/callback/tohauth",
+      "postLogoutRedirectUri": "https://tohfunctionapi.developer.azure-api.net/signin-oauth/code/callback/tohauth"
+    },
+    "resources": {
+      "todoListApi": {
+        "resourceUri": "https://functionapp220210412114342.azurewebsites.net/api/",
+        "resourceScopes": [ "api://2292d64a-9a6c-4387-981f-27539433f76f/heroes" ]
+      }
+    }     
+  }

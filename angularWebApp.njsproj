@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{86ab203c-3ae7-4940-a1b4-59072b0bf5d5}</ProjectGuid>
+        <ProjectHome>.</ProjectHome>
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile />
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <EnableTypeScript>true</EnableTypeScript>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="angular.json" />
+        <Content Include="package-lock.json" />
+        <Content Include="package.json" />
+        <Content Include="tsconfig.app.json" />
+        <None Include="tsconfig.json" />
+        <Content Include="tsconfig.spec.json" />
+        <Content Include="tslint.json" />
+        <Content Include="README.md" />
+        <None Include="e2e\tsconfig.json" />
+        <Content Include="src\index.html" />
+        <Content Include="src\styles.css" />
+        <Content Include="src\favicon.ico" />
+        <Content Include="src\proxy.conf.json" />
+        <None Include="src\main.ts" />
+        <None Include="src\polyfills.ts" />
+        <None Include="src\test.ts" />
+        <Content Include="dist\angular-tour-of-heroes\index.html" />
+        <Content Include="dist\angular-tour-of-heroes\styles.css" />
+        <Content Include="dist\angular-tour-of-heroes\favicon.ico" />
+        <None Include="e2e\src\app.e2e-spec.ts" />
+        <None Include="e2e\src\app.po.ts" />
+        <Content Include="src\app\app.component.html" />
+        <Content Include="src\app\app.component.css" />
+        <None Include="src\app\app-routing.module.ts" />
+        <None Include="src\app\app.component.spec.ts" />
+        <None Include="src\app\app.component.ts" />
+        <None Include="src\app\app.module.ts" />
+        <None Include="src\app\hero.service.spec.ts" />
+        <None Include="src\app\hero.service.ts" />
+        <None Include="src\app\hero.ts" />
+        <None Include="src\app\like-counter.actions.ts" />
+        <None Include="src\app\like-counter.reducer.ts" />
+        <None Include="src\app\message.service.spec.ts" />
+        <None Include="src\app\message.service.ts" />
+        <None Include="src\environments\environment.prod.ts" />
+        <None Include="src\environments\environment.ts" />
+        <Content Include="src\app\dashboard\dashboard.component.html" />
+        <Content Include="src\app\dashboard\dashboard.component.css" />
+        <None Include="src\app\dashboard\dashboard.component.spec.ts" />
+        <None Include="src\app\dashboard\dashboard.component.ts" />
+        <Content Include="src\app\hero-detail\hero-detail.component.html" />
+        <Content Include="src\app\hero-detail\hero-detail.component.css" />
+        <None Include="src\app\hero-detail\hero-detail.component.spec.ts" />
+        <None Include="src\app\hero-detail\hero-detail.component.ts" />
+        <Content Include="src\app\hero-search\hero-search.component.html" />
+        <Content Include="src\app\hero-search\hero-search.component.css" />
+        <None Include="src\app\hero-search\hero-search.component.spec.ts" />
+        <None Include="src\app\hero-search\hero-search.component.ts" />
+        <Content Include="src\app\heroes\heroes.component.html" />
+        <Content Include="src\app\heroes\heroes.component.css" />
+        <None Include="src\app\heroes\heroes.component.spec.ts" />
+        <None Include="src\app\heroes\heroes.component.ts" />
+        <Content Include="src\app\messages\messages.component.html" />
+        <Content Include="src\app\messages\messages.component.css" />
+        <None Include="src\app\messages\messages.component.spec.ts" />
+        <None Include="src\app\messages\messages.component.ts" />
+        <Content Include="src\app\pagenotfound\pagenotfound.component.html" />
+        <Content Include="src\app\pagenotfound\pagenotfound.component.css" />
+        <None Include="src\app\pagenotfound\pagenotfound.component.spec.ts" />
+        <None Include="src\app\pagenotfound\pagenotfound.component.ts" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="dist" />
+        <Folder Include="dist\angular-tour-of-heroes" />
+        <Folder Include="e2e" />
+        <Folder Include="e2e\src" />
+        <Folder Include="src" />
+        <Folder Include="src\app" />
+        <Folder Include="src\app\dashboard" />
+        <Folder Include="src\app\hero-detail" />
+        <Folder Include="src\app\heroes" />
+        <Folder Include="src\app\hero-search" />
+        <Folder Include="src\app\messages" />
+        <Folder Include="src\app\pagenotfound" />
+        <Folder Include="src\assets" />
+        <Folder Include="src\environments" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

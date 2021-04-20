@@ -1,0 +1,8 @@
+<h2>My Sidekicks</h2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let sidekick of sidekicks">
+    <a class="btn btn-secondary" routerLink="/sidekick/{{sidekick.id}}">
+      <span></span> {{sidekick.name}}
+    </a>
+  </li>
+</ul>

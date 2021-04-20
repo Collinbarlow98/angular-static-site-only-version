@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
 import { Hero } from './hero';
+import { Sidekick } from './sidekick';
 import { MessageService } from './message.service';
 import { catchError, tap } from 'rxjs/operators';
+
+//import * as auth from './authconfig.json';
 
 // This decorator allows the HeroService class to be injected into other classes.
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
-  private heroesUrl = 'https://localhost:44361/api/TohHeroes';  // URL to web api, if i were to create an actual heroes api i would replace this with the url to that and then delete the in-data-memory mock server.
+  private heroesUrl = "https://tohfunctionapi.azure-api.net/FunctionApp220210412114342/HeroesWithSidekicks";  // URL to web api, if i were to create an actual heroes api i would replace this with the url to that and then delete the in-data-memory mock server.
 
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
@@ -37,7 +41,8 @@ export class HeroService {
   The mock server responds with an array of heroes. 
   */
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    const url = `${this.heroesUrl}/heroes`;
+    return this.http.get<Hero[]>(url)
       .pipe(
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
@@ -48,7 +53,7 @@ export class HeroService {
   This request requires an id parameter in order to determine which hero the get is actually requesting. So the first thing in the method is to add on to the heroesUrl variable to include the id parameter.
   Then the get request goes through being intercepted by the mock server.
   */
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     const url = `${this.heroesUrl}/hero/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
@@ -72,7 +77,8 @@ export class HeroService {
 
   // Another http request, this is a post request that takes the name parameter and creates a new hero based off of the Hero interface, and adds it to the heroes array, the id automatically being generated.*/
   addHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
+    const url = `${this.heroesUrl}/add`;
+    return this.http.post<Hero>(url, hero).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
@@ -101,6 +107,60 @@ export class HeroService {
         this.log(`found heroes matching "${term}"`) :
         this.log(`no heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
+  }
+
+  // Sidekicks
+  addSidekick(sidekick: Sidekick): Observable<Sidekick> {
+    const url = `${this.heroesUrl}/addSidekick`;
+    return this.http.post<Sidekick>(url, sidekick).pipe(
+      tap((newSidekick: Sidekick) => this.log(`added hero w/ id=${newSidekick.id}`)),
+      catchError(this.handleError<Sidekick>('addSidekick'))
+    );
+  }
+
+  deleteSidekick(sidekick: Sidekick | number): Observable<Sidekick> {
+    const id = typeof sidekick === 'number' ? sidekick : sidekick.id;
+    const url = `${this.heroesUrl}/sidekick/${id}`;
+
+    return this.http.delete<Sidekick>(url).pipe(
+      tap(_ => this.log(`deleted sidekick id=${id}`)),
+      catchError(this.handleError<Sidekick>('deleteSidekick'))
+    );
+  }
+
+  getSidekicks(): Observable<Sidekick[]> {
+    const url = `${this.heroesUrl}/sidekicks`;
+    return this.http.get<Sidekick[]>(url)
+      .pipe(
+        tap(_ => this.log('fetched Sidekicks')),
+        catchError(this.handleError<Sidekick[]>('getSidekicks', []))
+      );
+  }
+
+  getHeroSidekicks(id: string): Observable<Sidekick[]> {
+    const url = `${this.heroesUrl}/hero/${id}/sidekicks`;
+    return this.http.get<Sidekick[]>(url)
+      .pipe(
+        tap(_ => this.log('fetched Sidekicks')),
+        catchError(this.handleError<Sidekick[]>('getSidekicks', []))
+      );
+  }
+
+  getSidekick(id: string): Observable<Sidekick> {
+    const url = `${this.heroesUrl}/sidekick/${id}`;
+    return this.http.get<Sidekick>(url).pipe(
+      tap(_ => this.log(`fetched sidekick id=${id}`)),
+      catchError(this.handleError<Sidekick>(`getSidekick id=${id}`))
+    );
+  }
+
+  updateSidekick(sidekick: Sidekick): Observable<any> {
+    const id = typeof sidekick === 'number' ? sidekick : sidekick.id;
+    const url = `${this.heroesUrl}/sidekick/${id}`;
+    return this.http.put(url, sidekick).pipe(
+      tap(_ => this.log(`updated sidekick id=${sidekick.id}`)),
+      catchError(this.handleError<any>('updateSidekick'))
     );
   }
 

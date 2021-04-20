@@ -1,15 +1,36 @@
 <div *ngIf="hero">
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div>Likes: {{ likes$._value.hero.name.likes }}</div>
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div>Likes: {{ likes$._value.hero.name.likes }}</div>
 
-    <button id="increment" (click)="increment()">Increment</button>
+  <button class="btn btn-secondary" id="increment" (click)="increment()">Increment</button>
 
-    <button id="decrement" (click)="decrement()">Decrement</button>
-    <div><span>id: </span>{{hero.id}}</div>
-    <div>
-      <label for="hero-name">Hero name: </label>
-      <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>
-    </div>
-    <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
+  <button class="btn btn-secondary" id="decrement" (click)="decrement()">Decrement</button>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name" />
   </div>
+  <button class="btn btn-secondary" (click)="goBack()">go back</button>
+  <button class="btn btn-secondary" (click)="save()">save</button>
+  <h3>Sidekicks</h3>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let sidekick of sidekicks">
+      <a class="btn btn-secondary" routerLink="/sidekick/{{sidekick.id}}">
+        <span></span> {{sidekick.name}}
+      </a>
+      <button class="btn btn-secondary" title="delete sidekick"
+              (click)="delete(sidekick)">
+        Delete
+      </button>
+    </li>
+  </ul>
+  <div>
+    <label id="new-sidekick">Sidekick name: </label>
+    <input for="new-sidekick" #sidekickName />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="btn btn-secondary" (click)="add(sidekickName.value, hero.id); sidekickName.value=''">
+      Add Sidekick
+    </button>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Hero } from '../hero';
+import { Sidekick } from '../sidekick';
 import { HeroService } from '../hero.service';
 import { Store } from '@ngrx/store';
 import { increment, decrement, setState} from '../like-counter.actions';
@@ -15,6 +16,7 @@ import { increment, decrement, setState} from '../like-counter.actions';
 export class HeroDetailComponent implements OnInit {
   hero: Hero | null = null;
   likes$: any;
+  sidekicks: Sidekick[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,11 +31,12 @@ export class HeroDetailComponent implements OnInit {
   }
   
   getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id')!;
+    var id = this.route.snapshot.paramMap.get('id')!;
     this.heroService.getHero(id)
       .subscribe(hero => {
         this.hero = hero;
         this.setState()
+        this.getHeroSidekicks(id);
       });
   }
 
@@ -47,6 +50,26 @@ export class HeroDetailComponent implements OnInit {
       this.heroService.updateHero(this.hero)
       .subscribe(() => this.goBack());
     }
+  }
+
+  add(name: string, hero: string): void {
+    name = name.trim();
+    hero = this.route.snapshot.paramMap.get('id')!;
+    if (!name) { return; }
+    this.heroService.addSidekick({ name, hero } as Sidekick)
+      .subscribe(sidekick => {
+        this.sidekicks.push(sidekick);
+      });
+  }
+
+  getHeroSidekicks(id: string): void {
+    this.heroService.getHeroSidekicks(id)
+    .subscribe(sidekicks => this.sidekicks = sidekicks);
+  }
+
+  delete(sidekick: Sidekick): void {
+    this.sidekicks = this.sidekicks.filter(s => s !== sidekick);
+    this.heroService.deleteSidekick(sidekick).subscribe();
   }
 
   increment() {
